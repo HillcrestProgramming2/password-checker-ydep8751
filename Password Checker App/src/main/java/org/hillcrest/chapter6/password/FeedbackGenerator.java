@@ -2,19 +2,17 @@ package org.hillcrest.chapter6.password;
 
 
 /**
- * FeedbackGenerator creates suggestions to improve a password.
+ * class that generates feedback to improve password.
  */
 public class FeedbackGenerator {
 
     /**
      * Generates feedback based on missing password criteria.
-     *
-     * @param password the password to analyze
-     * @return feedback string (empty if no suggestions)
+     * @param password the password used to suggest
+     * @return feedback which includes what is needed to improve
      */
     public static String generateFeedback(String password) {
         String feedback = "";
-
         boolean hasUpper = false;
         boolean hasLower = false;
         boolean hasDigit = false;
@@ -24,11 +22,18 @@ public class FeedbackGenerator {
 
         for (int i = 0; i < password.length(); i++) {
             char c = password.charAt(i);
-
-            if (Character.isUpperCase(c)) hasUpper = true;
-            else if (Character.isLowerCase(c)) hasLower = true;
-            else if (Character.isDigit(c)) hasDigit = true;
-            else if (specialChars.indexOf(c) != -1) hasSpecial = true;
+            if (Character.isUpperCase(c)){
+                hasUpper = true;
+            }
+            else if (Character.isLowerCase(c)){
+                hasLower = true;
+            }
+            else if (Character.isDigit(c)){
+                hasDigit = true;
+            }
+            else if (specialChars.indexOf(c) != -1){
+                hasSpecial = true;
+            }
         }
 
         if (password.length() < 8) {

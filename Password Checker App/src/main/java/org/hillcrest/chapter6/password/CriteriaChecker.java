@@ -1,15 +1,14 @@
 package org.hillcrest.chapter6.password;
 
     /**
-     * CriteriaChecker evaluates a password against strength rules.
+     * class that evaluates the password based on the criteria.
      */
     public class CriteriaChecker {
 
         /**
          * Evaluates how many criteria the password meets.
-         *
-         * @param password the password to evaluate
-         * @return number of criteria met (0–5)
+         * @param password the password that is evaluated
+         * @return number of criteria met on a scale from 0-5
          */
         public static int evaluateCriteria(String password) {
             int score = 0;
@@ -21,7 +20,11 @@ package org.hillcrest.chapter6.password;
 
             String specialChars = "!@#$%^&*()-+=";
 
-            // Loop through characters (required)
+            /**
+             * Loop through characters to check for criteria
+             * the indexof is used to find special characters and if it returns a -1 that means no special characters are included
+             */
+
             for (int i = 0; i < password.length(); i++) {
                 char c = password.charAt(i);
 
@@ -36,11 +39,21 @@ package org.hillcrest.chapter6.password;
                 }
             }
 
-            if (password.length() >= 8) score++;
-            if (hasUpper) score++;
-            if (hasLower) score++;
-            if (hasDigit) score++;
-            if (hasSpecial) score++;
+            if (password.length() >= 8){
+                score++;
+            }
+            if (hasUpper){
+                score++;
+            }
+            if (hasLower){
+                score++;
+            }
+            if (hasDigit){
+                score++;
+            }
+            if (hasSpecial){
+                score++;
+            }
 
             return score;
         }

@@ -18,6 +18,6 @@ public class FeedbackGeneratorTest {
 
     @Test
     public void testNoFeedbackForStrongPassword() {
-        assertEquals("", FeedbackGenerator.generateFeedback("Secure@2024"));
+        assertEquals("", FeedbackGenerator.generateFeedback("Yuvan@depatla*1234"));
     }
 }
