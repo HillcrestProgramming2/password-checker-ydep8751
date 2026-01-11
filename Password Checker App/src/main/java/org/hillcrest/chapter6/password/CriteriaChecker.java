@@ -1,67 +1,68 @@
 package org.hillcrest.chapter6.password;
 
-public class CriteriaChecker{
+    /**
+     * CriteriaChecker evaluates a password against strength rules.
+     */
+    public class CriteriaChecker {
 
+        /**
+         * Evaluates how many criteria the password meets.
+         *
+         * @param password the password to evaluate
+         * @return number of criteria met (0–5)
+         */
+        public static int evaluateCriteria(String password) {
+            int score = 0;
 
-    // Evaluates password and returns how many criteria (0–5) it meets
-    public static int evaluateCriteria(String password) {
-        int score = 0;
+            boolean hasUpper = false;
+            boolean hasLower = false;
+            boolean hasDigit = false;
+            boolean hasSpecial = false;
 
-        // Criterion 1: At least 8 characters
-        if (password.length() >= 8) {
-            score++;
-        }
+            String specialChars = "!@#$%^&*()-+=";
 
-        boolean hasUpper = false;
-        boolean hasLower = false;
-        boolean hasDigit = false;
-        boolean hasSpecial = false;
+            // Loop through characters (required)
+            for (int i = 0; i < password.length(); i++) {
+                char c = password.charAt(i);
 
-        // Allowed special characters
-        String specialChars = "!@#$%^&*()-+=";
-
-        // Loop through characters
-        for (int i = 0; i < password.length(); i++) {
-            char ch = password.charAt(i);
-
-            if (Character.isUpperCase(ch)) {
-                hasUpper = true;
-            } else if (Character.isLowerCase(ch)) {
-                hasLower = true;
-            } else if (Character.isDigit(ch)) {
-                hasDigit = true;
-            } else
-            {
-                // Check special characters using a loop
-                for (int j = 0; j < specialChars.length(); j++) {
-                    if (ch == specialChars.charAt(j)) {
-                        hasSpecial = true;
-                        break;
-                    }
+                if (Character.isUpperCase(c)) {
+                    hasUpper = true;
+                } else if (Character.isLowerCase(c)) {
+                    hasLower = true;
+                } else if (Character.isDigit(c)) {
+                    hasDigit = true;
+                } else if (specialChars.indexOf(c) != -1) {
+                    hasSpecial = true;
                 }
             }
+
+            if (password.length() >= 8) score++;
+            if (hasUpper) score++;
+            if (hasLower) score++;
+            if (hasDigit) score++;
+            if (hasSpecial) score++;
+
+            return score;
         }
 
-        // Add points for each criterion met
-        if (hasUpper) score++;
-        if (hasLower) score++;
-        if (hasDigit) score++;
-        if (hasSpecial) score++;
-
-        return score;
-    }
-
-    // Returns strength label based on score
-    public static String determineStrength(int score) {
-        if (score <= 2) {
-            return "Weak";
-        } else if (score == 3) {
-            return "Moderate";
-        } else {
-            return "Strong";
+        /**
+         * Determines the strength label based on score.
+         *
+         * @param score criteria score (0–5)
+         * @return Weak, Moderate, or Strong
+         */
+        public static String determineStrength(int score) {
+            if (score <= 2) {
+                return "Weak";
+            } else if (score == 3) {
+                return "Moderate";
+            } else {
+                return "Strong";
+            }
         }
     }
-}
+
+
 
 
 
