@@ -59,9 +59,8 @@ package org.hillcrest.chapter6.password;
         }
 
         /**
-         * Determines the strength label based on score.
-         *
-         * @param score criteria score (0–5)
+         * Determines the strength based on score.
+         * @param score criteria score 0-5
          * @return Weak, Moderate, or Strong
          */
         public static String determineStrength(int score) {
