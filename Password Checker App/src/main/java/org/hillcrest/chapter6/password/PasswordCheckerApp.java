@@ -17,7 +17,7 @@ public class PasswordCheckerApp {
         int score = CriteriaChecker.evaluateCriteria(password);
         String strength = CriteriaChecker.determineStrength(score);
         String feedback = FeedbackGenerator.generateFeedback(password);
-        
+
         System.out.println("\nPassword Strength: " + strength + " (" + score + "/5)");
         if (!feedback.isEmpty()) {
             System.out.println("Suggestions to improve your password:");
